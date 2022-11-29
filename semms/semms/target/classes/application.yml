@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    username: root
+    password: 950217
+    url: jdbc:mysql://localhost:3306/semms?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis:
+  mapper-locations: classpath:mybatis/*.xml
+  type-aliases-package: com.xssdhr.semms.domain
+
+
+server:
+  port: 8099
