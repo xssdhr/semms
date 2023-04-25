@@ -4,18 +4,17 @@ package com.xssdhr.controller;
 import com.xssdhr.entity.R;
 import com.xssdhr.entity.SysUser;
 import com.xssdhr.service.SysUserService;
-import com.xssdhr.util.JwtUtils;
-import com.xssdhr.util.StringUtil;
+import com.xssdhr.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/test")
@@ -23,6 +22,7 @@ public class TestController {
 
     @Autowired
     private SysUserService sysUserService;
+
 
     @RequestMapping("/user/list")
     //判断角色

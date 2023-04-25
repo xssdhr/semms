@@ -7,4 +7,8 @@ package com.xssdhr.common.constant;
  */
 public class Constant {
     public final static String DEFAULT_PASSWORD="123456";
+
+    //阿里云短信服务ACCESS_KEY
+    public final static String ACCESS_KEY_ID = "LTAI5tRC78Q6MWs3ycszzB4G";
+    public final static String ACCESS_KEY_SECRET = "ORLuhf16VqekidA2mqpGjfChPAurOS";
 }

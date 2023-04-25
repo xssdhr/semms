@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xssdhr.mapper.AccountApplicationSubCreatorMapper">
+
+    <resultMap id="BaseResultMap" type="com.xssdhr.entity.AccountApplicationSubCreator">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="parentId" column="parent_id" jdbcType="BIGINT"/>
+            <result property="platform" column="platform" jdbcType="VARCHAR"/>
+            <result property="name" column="name" jdbcType="VARCHAR"/>
+            <result property="area" column="area" jdbcType="VARCHAR"/>
+            <result property="areaProvince" column="area_province" jdbcType="VARCHAR"/>
+            <result property="areaCity" column="area_city" jdbcType="VARCHAR"/>
+            <result property="fans" column="fans" jdbcType="VARCHAR"/>
+            <result property="love" column="love" jdbcType="VARCHAR"/>
+            <result property="price" column="price" jdbcType="VARCHAR"/>
+            <result property="notes" column="notes" jdbcType="VARCHAR"/>
+            <result property="link" column="link" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,parent_id,platform,area_province,area_city,area,
+        name,area,fans,
+        love,price,notes,
+        link
+    </sql>
+</mapper>

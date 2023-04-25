@@ -66,6 +66,16 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         System.out.println("authority:"+authority.toString());
         return authority.toString();
     }
+
+    @Override
+    public SysUser getByPhoneNum(String phoneNumber) {
+        return getOne(new QueryWrapper<SysUser>().eq("phonenumber",phoneNumber));
+    }
+
+    @Override
+    public SysUser createDefaultUser(String phoneNumber) {
+        return null;
+    }
 }
 
 

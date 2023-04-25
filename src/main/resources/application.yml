@@ -1,7 +1,8 @@
 server:
-  port: 80
+  port: 8099
   servlet:
     context-path: /
+
 
 spring:
   datasource:
@@ -10,8 +11,11 @@ spring:
     url: jdbc:mysql://localhost:3306/semms?serverTimezone=Asia/Shanghai
     username: root
     password: 950217
+#    username: root
+#    password: 74520sxmmd
   redis: # redis配置
-    host: 127.0.0.1 # IP
+    #    host: 127.0.0.1 # IP
+    host: 47.113.230.171 # IP
     port: 6379  # 端口
     password:  # 密码
     connect-timeout: 10s  # 连接超时时间
@@ -22,7 +26,6 @@ spring:
         max-idle: 8 # 连接池中的最大空闲连接 默认 8
         min-idle: 0 # 连接池中的最小空闲连接 默认 0
 
-
 mybatis-plus:
   global-config:
     db-config:
@@ -32,5 +35,20 @@ mybatis-plus:
     auto-mapping-behavior: full
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   mapper-locations: classpath:mapper/*.xml
+web:
+  avatarImagesFilePath: D:\WorkSpace\2023\userAvatar\
+  certificateImageFilePath: D:\WorkSpace\2023\certificateImage\
+#  avatarImagesFilePath: /www/wwwroot/http/userAvatar
+#  certificateImageFilePath: /www/wwwroot/http/certificateImage
+default:
+  defaultPassWord: 123456
+  defaultavatarMomoPath: momo.jpg
+  #账号申请默认接收用户id
+  defaultAccountApplyReceiverId: 1
+  defaultAccountApplyReceiverName: 跳跳
 
-avatarImagesFilePath: D:\WorkSpace\2023\userAvatar\
+  #工作流：业务id
+businessId:
+  accountApplyId: 1
+  accountApplyName: 账号申请
+

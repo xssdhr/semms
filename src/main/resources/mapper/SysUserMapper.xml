@@ -13,6 +13,7 @@
             <result property="phonenumber" column="phonenumber" jdbcType="VARCHAR"/>
             <result property="loginDate" column="login_date" jdbcType="TIMESTAMP"/>
             <result property="status" column="status" jdbcType="CHAR"/>
+            <result property="authorize" column="authorize" jdbcType="CHAR"/>
             <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
             <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
             <result property="remark" column="remark" jdbcType="VARCHAR"/>
@@ -20,7 +21,7 @@
 
     <sql id="Base_Column_List">
         id,username,password,
-        avatar,email,phonenumber,
+        avatar,email,phonenumber,authorize,
         login_date,status,create_time,
         update_time,remark
     </sql>

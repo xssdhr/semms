@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xssdhr.mapper.AccountApplicationMapper">
+
+    <resultMap id="BaseResultMap" type="com.xssdhr.entity.AccountApplication">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="role" column="role" jdbcType="VARCHAR"/>
+            <result property="userId" column="user_id" jdbcType="BIGINT"/>
+            <result property="userName" column="user_name" jdbcType="VARCHAR"/>
+            <result property="serialCode" column="serial_code" jdbcType="VARCHAR"/>
+            <result property="contacts" column="contacts" jdbcType="VARCHAR"/>
+            <result property="phoneNumber" column="phone_number" jdbcType="VARCHAR"/>
+            <result property="email" column="email" jdbcType="VARCHAR"/>
+            <result property="idCard" column="id_card" jdbcType="VARCHAR"/>
+            <result property="bankName" column="bank_name" jdbcType="VARCHAR"/>
+            <result property="bankAccount" column="bank_account" jdbcType="VARCHAR"/>
+            <result property="accountName" column="account_name" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="remark" column="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,role,contacts,
+        phone_number,email,id_card,user_id,user_name,serial_code,
+        bank_name,bank_account,account_name,
+        create_time,update_time,
+        remark
+    </sql>
+</mapper>

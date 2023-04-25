@@ -42,7 +42,6 @@ public class JwtAuthenticationFilter extends BasicAuthenticationFilter {
     private static final String URL_WHITELIST[] ={
             "/login",
             "/logout",
-            "/captcha",
             "/password",
             "/image/**"
     } ;
@@ -68,7 +67,6 @@ public class JwtAuthenticationFilter extends BasicAuthenticationFilter {
                 case JwtConstant.JWT_ERRCODE_NULL:throw new JwtException("token不存在");
                 case JwtConstant.JWT_ERRCODE_FAIL:throw new JwtException("token验证不通过");
                 case JwtConstant.JWT_ERRCODE_EXPIRE:throw new JwtException("token已过期");
-
             }
         }
         Claims claims = JwtUtils.parseJWT(token);

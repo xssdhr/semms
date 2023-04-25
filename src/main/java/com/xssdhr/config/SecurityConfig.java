@@ -1,6 +1,9 @@
 package com.xssdhr.config;
 
 import com.xssdhr.common.security.*;
+import com.xssdhr.common.security.SmsCode.SmsAuthenticationFailureHandler;
+import com.xssdhr.common.security.SmsCode.SmsCodeAuthenticationSecurityConfig;
+import com.xssdhr.common.security.SmsCode.ValidateCodeFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,6 +14,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 
 /**
@@ -37,26 +41,31 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     @Autowired
     private LogoutSuccessHandler logoutSuccessHandler;
 
-
     @Autowired
     private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
-    private static final String URL_WHITELIST[] ={
+    @Autowired
+    private SmsAuthenticationFailureHandler smsAuthenticationFailureHandler;
+
+    @Autowired
+    private SmsCodeAuthenticationSecurityConfig smsCodeAuthenticationSecurityConfig;
+
+    @Autowired
+    private ValidateCodeFilter validateCodeFilter;
+
+
+    private static final String[] URL_WHITELIST ={
             "/login",
             "/logout",
-            "/captcha",
             "/password",
-            "/image/**"
+            "/image/**",
+            "/captcha/**"
     } ;
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(myUserDetailsService);
     }
-
-
-
-
-
     @Bean
     JwtAuthenticationFilter jwtAuthenticationFilter() throws Exception {
         JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(authenticationManager());
@@ -71,8 +80,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
+        validateCodeFilter.setAuthenticationFailureHandler(smsAuthenticationFailureHandler);
+
         //开启跨域 以及csrf攻击 关闭
         http
+                .addFilterBefore(validateCodeFilter, UsernamePasswordAuthenticationFilter.class)
                 .cors()
                 .and()
                 .csrf()
@@ -93,7 +105,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .and()
                 .authorizeRequests()
                 .antMatchers(URL_WHITELIST).permitAll() //白名单，泛型
-                .anyRequest().authenticated()
+                .anyRequest()
+                .authenticated()
         // 异常处理器配置
 
                 .and()
@@ -101,7 +114,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .authenticationEntryPoint(jwtAuthenticationEntryPoint)
         // 自定义过滤器配置
                 .and()
-                .addFilter(jwtAuthenticationFilter());
+                .addFilter(jwtAuthenticationFilter())
+                .apply(smsCodeAuthenticationSecurityConfig);
 
 
     }

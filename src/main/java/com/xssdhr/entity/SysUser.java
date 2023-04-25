@@ -53,10 +53,16 @@ public class SysUser extends BaseEntity implements Serializable {
     private Date loginDate;
 
     /**
-     * 帐号状态（0正常 1停用）
+     * 帐号状态（0正常 1停用 ）
      */
     @TableField(value = "status")
     private String status;
+
+    /**
+     * 是否授权（0-未授权 1 已授权）
+     */
+    @TableField(value = "authorize")
+    private String authorize;
 
     /**
      * 所属角色，多个角色，逗号隔开
@@ -82,4 +88,12 @@ public class SysUser extends BaseEntity implements Serializable {
      */
     @TableField(exist = false)
     public List<SysRole> sysRoleList;
+
+    public SysUser(String username, String password, String avatar, String phonenumber, String status) {
+        this.username = username;
+        this.password = password;
+        this.avatar = avatar;
+        this.phonenumber = phonenumber;
+        this.status = status;
+    }
 }

@@ -10,6 +10,30 @@ public class PageBean {
     private int pageSize; // 每页记录数
     private int start; // 起始页
     private String query; // 查询参数
+    private String queryId; //用户id&表单id
+    private boolean isHide; //是否隐藏作废单据（2-审核通过 3-审核不通过'）
+    public boolean isHide() {
+        return isHide;
+    }
+
+    public void setHide(boolean hide) {
+        isHide = hide;
+    }
+
+
+
+
+
+
+
+    public String getQueryId() {
+        return queryId;
+    }
+
+    public void setQueryId(String queryId) {
+        this.queryId = queryId;
+    }
+
     public PageBean() {
     }
     public PageBean(int pageNum, int pageSize, String query) {

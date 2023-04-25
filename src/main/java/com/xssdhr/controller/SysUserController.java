@@ -7,8 +7,7 @@ import com.xssdhr.entity.*;
 import com.xssdhr.service.SysRoleService;
 import com.xssdhr.service.SysUserRoleService;
 import com.xssdhr.service.SysUserService;
-import com.xssdhr.util.DateUtil;
-import com.xssdhr.util.StringUtil;
+import com.xssdhr.util.*;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,6 +19,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Logger;
 
 /**
  * 用户Controller控制器
@@ -31,8 +32,9 @@ import java.util.*;
 @RequestMapping("/sys/user")
 public class SysUserController {
 
-    @Value("${avatarImagesFilePath}")
+    @Value("${web.avatarImagesFilePath}")
     private String avatarImagesFilePath;
+
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -45,6 +47,10 @@ public class SysUserController {
 
     @Autowired
     private SysUserService sysUserService;
+
+
+
+
     /**
      * 添加或者修改
      * @param sysUser
@@ -243,6 +249,9 @@ public class SysUserController {
         sysUserRoleService.saveBatch(userRoleList);
         return R.ok();
     }
+
+
+
 
 
 }
